@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\MyClasses\MyService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        app()->bind('App\MyClasses\MyServiceInterface',
+        'App\MyClasses\MyService');
     }
 }
