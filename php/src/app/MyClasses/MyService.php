@@ -3,7 +3,6 @@ namespace App\MyClasses;
 
 class MyService implements MyServiceInterface
 {
-    private $serial;
     private $id = -1;
     private $msg = 'No id ....';
     private $data = ['Hello', 'Welcome', 'Bye'];
