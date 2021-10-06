@@ -13,7 +13,10 @@ class MyServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        app()->singleton('App\MyClasses\MyServiceInterface', 'App\MyClasses\PowerMyService');
+        app()->singleton('myservice',
+            'App\MyClasses\PowerMyService');
+        app()->singleton('App\MyClasses\MyserviceInterface',
+            'App\MyClasses\PowerMyService');
         echo "<b>MyServiceProvider/resister</b><br>";
     }
 
