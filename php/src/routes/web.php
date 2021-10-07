@@ -12,5 +12,9 @@
 */
 
 
-Route::get('/hello', 'HelloController@index')->name('hello');
+Route::get('/hello', 'HelloController@index')
+    ->middleware(App\Http\Middleware\MyMiddleware::class);
 
+
+Route::get('/hello/{id}', 'HelloController@index')
+    ->middleware(App\Http\Middleware\MyMiddleware::class);
