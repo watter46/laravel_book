@@ -13,7 +13,7 @@
 
 
 Route::get('/hello', 'HelloController@index')
-    ->middleware(App\Http\Middleware\MyMiddleware::class);
+    ->middleware('MyMW');
 
 
 Route::get('/hello/{id}', 'HelloController@index')
