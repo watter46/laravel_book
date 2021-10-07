@@ -7,13 +7,15 @@ use Illuminate\Http\Response;
 // use App\MyClasses\MyService;
 use App\MyClasses\MyServiceInterface;
 use App\Facades\MyService;
+use Illuminate\Support\Facades\DB;
 
 class HelloController extends Controller
 {
-    public function index(Request $request){
+    public function index(){
+        $result = DB::table('people')->get();
         $data = [
-            'msg' => $request->hello,
-            'data' => $request->alldata,
+            'msg' => 'Database access.',
+            'data' => $result,
         ];
         return view('hello.index', $data);
     }
