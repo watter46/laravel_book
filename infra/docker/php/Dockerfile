@@ -25,6 +25,9 @@ RUN groupadd -g $GROUP_ID $GROUP_NAME && \
        chown -R $USER_NAME:$GROUP_NAME /var/run/ && \
        chown -R $USER_NAME:$GROUP_NAME /var/log/
 
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
+RUN apt-get install -y nodejs
+
 COPY ./infra/docker/php/php-fpm.d/zzz-www.conf /usr/local/etc/php-fpm.d/zzz-www.conf
 COPY ./infra/docker/php/www.conf /usr/local/etc/php-fpm.d/www.conf
 COPY ./infra/docker/php/php.ini /usr/local/etc/php/php.ini
