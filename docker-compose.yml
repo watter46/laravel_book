@@ -52,6 +52,7 @@ services:
       - web
 
   db:
+    container_name: db
     build:
       context: .
       dockerfile: ./infra/docker/mysql/Dockerfile

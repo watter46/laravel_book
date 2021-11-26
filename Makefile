@@ -97,30 +97,6 @@ cache-clear:
 	docker compose exec app composer clear-cache
 	@make optimize-clear
 	docker compose exec app php artisan event:clear
-npm:
-	@make npm-install
-npm-install:
-	docker compose exec web npm install
-npm-dev:
-	docker compose exec web npm run dev
-npm-watch:
-	docker compose exec web npm run watch
-npm-watch-poll:
-	docker compose exec web npm run watch-poll
-npm-hot:
-	docker compose exec web npm run hot
-yarn:
-	docker compose exec web yarn
-yarn-install:
-	@make yarn
-yarn-dev:
-	docker compose exec web yarn dev
-yarn-watch:
-	docker compose exec web yarn watch
-yarn-watch-poll:
-	docker compose exec web yarn watch-poll
-yarn-hot:
-	docker compose exec web yarn hot
 db:
 	docker compose exec db bash
 sql:
@@ -132,3 +108,8 @@ ide-helper:
 	docker compose exec app php artisan ide-helper:generate
 	docker compose exec app php artisan ide-helper:meta
 	docker compose exec app php artisan ide-helper:models --nowrite
+bootstrap:
+	docker compose exec app composer require laravel/ui 1.* && \
+	docker compose exec app php artisan ui bootstrap && \
+	docker compose exec app npm install && \
+	docker compose exec app npm run dev
