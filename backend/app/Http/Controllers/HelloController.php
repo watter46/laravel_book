@@ -10,7 +10,9 @@ class HelloController extends Controller
 {
     public function index(Request $request) {
         $msg = 'show people recorid.';
-        $result = Person::get();
+        $result = Person::get()->reject(function($person){
+            return $person->age < 20;
+        });
 
         $data = [
             'msg' => $msg,
