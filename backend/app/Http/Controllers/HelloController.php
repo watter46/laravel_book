@@ -13,6 +13,10 @@ class HelloController extends Controller
         $result = Person::get()->reject(function($person){
             return $person->age < 20;
         });
+        $result2 = Person::get()->reject(function($person){
+            return $person->age < 20;
+        });
+        $result3 = $result->diff($result2);
 
         $data = [
             'msg' => $msg,
