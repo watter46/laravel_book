@@ -8,20 +8,19 @@ use App\Person;
 
 class HelloController extends Controller
 {
-    public function index(Request $request) {
-        $msg = 'show people recorid.';
-        $result = Person::get()->reject(function($person){
-            return $person->age < 20;
-        });
-        $result2 = Person::get()->reject(function($person){
-            return $person->age < 20;
-        });
-        $result3 = $result->diff($result2);
+	public function index(Request $request){
+		$msg = 'show people recorid.';
+		$keys = Person::get()->modelKeys();
+		$even = array_filter($keys, function($key)
+			{
+					return $key % 2 == 0;
+			});
+		$result = Person::get()->only($even);
 
-        $data = [
-            'msg' => $msg,
-            'data'=> $result,
-        ];
-        return view('hello.index', $data);
-    }
+		$data = [
+				'msg' => $msg,
+				'data'=> $result,
+		];
+		return view('hello.index', $data);
+	}
 }
