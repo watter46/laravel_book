@@ -13,18 +13,13 @@
             <thead>
                 <tr>
                 <th scope="col">id</th>
-                <th scope="col">name</th>
-                <th scope="col">mail</th>
-                <th scope="col">age</th>
-                </tr>
+                <th scope="col">name and age</th>
             </thead>
             <tbody>
             @foreach ($data as $item)
                 <tr>
                 <th scope="row">{{ $item->id }}</th>
-                <td>{{ $item->name }}</td>
-                <td>{{ $item->mail }}</td>
-                <td>{{ $item->age }}</td>
+                <td>{{ $item->name_and_age }}</td>
                 </tr>
             @endforeach
             </tbody>
