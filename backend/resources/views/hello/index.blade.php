@@ -29,6 +29,5 @@
             @endforeach
             </tbody>
         </table>
-{!! $data->links() !!}
 </body>
 </html>
