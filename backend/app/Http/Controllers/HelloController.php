@@ -9,9 +9,12 @@ use App\Person;
 
 class HelloController extends Controller
 {
-	public function index(){
-		MyJob::dispatch();
-		$msg = 'show people record.';
+	public function index(Person $person = null){
+		if ($person != null)
+        {
+            MyJob::dispatch($person);
+        }
+        $msg = 'show people record.';
         $result = Person::get();
 
 		$data = [

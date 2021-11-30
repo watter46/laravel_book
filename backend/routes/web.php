@@ -12,6 +12,7 @@
 */
 
 Route::get('/hello', 'HelloController@index')->name('index');
+Route::get('/hello/{person}', 'HelloController@index');
 
 // Route::get('/hello/{id}', 'HelloController@index');
 // Route::get('/hello/{id}/{name}', 'HelloController@save');

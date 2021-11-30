@@ -30,8 +30,8 @@
 </head>
 <body>
     <h1>Hello/Index</h1>
-    {{-- <p>{{ $msg }}</p> --}}
-    <div>
+    <p>{{ $msg }}</p>
+    {{-- <div>
         <input type="number" id="id" value="1">
         <button onclick="doAction();">Click</button>
     </div>
@@ -40,9 +40,9 @@
         <li id="name"></li>
         <li id="mail"></li>
         <li id="age"></li>
-    </ul>
+    </ul> --}}
 
-    {{-- <table class="table">
+    <table class="table">
         <thead>
             <tr>
             <th scope="col">id</th>
@@ -56,6 +56,6 @@
             </tr>
         @endforeach
         </tbody>
-    </table> --}}
+    </table>
 </body>
 </html>
