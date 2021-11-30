@@ -29,6 +29,11 @@
     </script>
 </head>
 <body>
+    <form action="/hello" method="post">
+        @csrf
+        ID: <input type="text" id="id" name="id">
+        <input type="submit">
+    </form>
     <h1>Hello/Index</h1>
     <p>{{ $msg }}</p>
     {{-- <div>

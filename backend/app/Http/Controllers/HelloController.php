@@ -9,11 +9,7 @@ use App\Person;
 
 class HelloController extends Controller
 {
-	public function index(Person $person = null){
-		if ($person != null)
-        {
-            MyJob::dispatch($person)->delay(now()->addMinutes(1));
-        }
+	public function index(){
         $msg = 'show people record.';
         $result = Person::get();
 
@@ -24,6 +20,18 @@ class HelloController extends Controller
 		];
 		return view('hello.index', $data);
 	}
+
+    public function send(Request $request)
+    {
+        $id = $request->input('id');
+        $person = person::find($id);
+
+        dispatch(function() use ($person)
+        {
+            Storage::append('person_access_log.txt', $person->all_data);
+        });
+        return redirect()->route('index');
+    }
 
     // public function save($id, $name)
     // {
