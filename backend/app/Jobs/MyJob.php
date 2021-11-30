@@ -9,12 +9,12 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use App\Person;
 
-class Myjob implements ShouldQueue
+class MyJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    protected $person;
 
+    protected $person;
     /**
      * Create a new job instance.
      *
@@ -32,14 +32,12 @@ class Myjob implements ShouldQueue
      */
     public function handle()
     {
-        $sufix = '[+MYJOB]';
+        $sufix = '[+ MYJOB]';
         if (strpos($this->person->name, $sufix))
         {
             $this->person->name = str_replace($sufix, '',
                         $this->person->name);
-        }
-        else
-        {
+        } else {
             $this->person->name .= $sufix;
         }
         $this->person->save();
