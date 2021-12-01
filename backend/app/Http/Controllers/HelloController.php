@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use App\Jobs\MyJob;
 use App\Person;
+use App\Events\PersonEvent;
 
 class HelloController extends Controller
 {
@@ -26,11 +28,14 @@ class HelloController extends Controller
         $id = $request->input('id');
         $person = person::find($id);
 
-        dispatch(function() use ($person)
-        {
-            Storage::append('person_access_log.txt', $person->all_data);
-        });
-        return redirect()->route('index');
+        event(new PersonEvent($person));
+
+        $data = [
+                'input' => '',
+				'msg' => 'id='. $id,
+				'data'=> [$person],
+		];
+		return view('hello.index', $data);
     }
 
     // public function save($id, $name)

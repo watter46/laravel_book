@@ -11,8 +11,13 @@
 |
 */
 
+
+
 Route::get('/hello', 'HelloController@index')->name('index');
 Route::post('/hello', 'HelloController@send')->name('send');
+
+
+Route::get('/test', 'HelloController@test');
 // Route::get('/hello/{person}', 'HelloController@index');
 
 // Route::get('/hello/{id}', 'HelloController@index');
