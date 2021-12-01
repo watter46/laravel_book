@@ -9,19 +9,16 @@ use Illuminate\Support\Facades\Event;
 
 class EventServiceProvider extends ServiceProvider
 {
+    public function shouldDiscoverEvents()
+    {
+        return true;
+    }
     /**
      * The event listener mappings for the application.
      *
      * @var array
      */
-    protected $listen = [
-        Registered::class => [
-            SendEmailVerificationNotification::class,
-        ],
-        'App\Events\PersonEvent' => [
-            'App\Listeners\PersonEventListener',
-        ],
-    ];
+
 
     /**
      * Register any events for your application.
