@@ -1,0 +1,58 @@
+<?php
+
+namespace App\Listeners;
+
+use App\Person;
+use App\Events\PersonEvent;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Support\Facades\Storage;
+
+class MyEventSubscriber
+{
+    /**
+     * Create the event listener.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        //
+    }
+
+
+    public function subscribe($events)
+    {
+        $events->listen(
+            'App\Events\PersonEvent',
+            'App\Listeners\PersonEventListener@handle'
+        );
+    }
+}
+
+
+class PersonEventListener
+{
+    /**
+     * Create the event listener.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        //
+    }
+
+    /**
+     * Handle the event.
+     *
+     * @param  PersonEvent  $event
+     * @return void
+     */
+    public function handle(PersonEvent $event)
+    {
+        Storage::append('person_access_log.txt',
+                '[PersonEvent] '. now() . ' ' .
+                $event->person->all_data);
+    }
+}
