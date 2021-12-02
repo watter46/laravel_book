@@ -23,6 +23,12 @@ class HelloController extends Controller
 		return view('hello.index', $data);
 	}
 
+    public function test(){
+        $count = Person::all()->count();
+        $id = rand(0, $count) + 1;
+        echo $id;
+    }
+
     public function send(Request $request)
     {
         $id = $request->input('id');

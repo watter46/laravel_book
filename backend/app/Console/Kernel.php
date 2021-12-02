@@ -28,7 +28,13 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
-        $schedule->command('queue:work --stop-when-empty');
+        $count = Person::all()->count();
+        $id = rand(0, $count) + 1;
+        $schedule->call(function() use ($id)
+        {
+            $person = Person::find($id);
+            MyJob::dispatch($person);
+        });
     }
 
     /**
